@@ -472,7 +472,7 @@ namespace LumiSoft.Net.IO
                 m_MaxCount       = maxCount;
                 m_ExceededAction = exceededAction;
 
-                m_pReadLineOP = new ReadLineAsyncOP(new byte[32000],exceededAction);
+                m_pReadLineOP = new ReadLineAsyncOP(new byte[4*1024*1024],exceededAction);
                 m_pReadLineOP.Completed += new EventHandler<EventArgs<ReadLineAsyncOP>>(m_pReadLineOP_Completed);
             }
 
@@ -1024,7 +1024,7 @@ namespace LumiSoft.Net.IO
         private DateTime          m_LastActivity;
         private long              m_BytesReaded      = 0;
         private long              m_BytesWritten     = 0;
-        private int               m_BufferSize       = 32000;
+        private int               m_BufferSize       = 4*1024*1024;
         private byte[]            m_pReadBuffer      = null;
         private int               m_ReadBufferOffset = 0;
         private int               m_ReadBufferCount  = 0;        
@@ -2041,7 +2041,7 @@ namespace LumiSoft.Net.IO
 
                 try{
                     // Read line.
-                    m_pReadLineOP = new ReadLineAsyncOP(new byte[32000],SizeExceededAction.ThrowException);
+                    m_pReadLineOP = new ReadLineAsyncOP(new byte[4*1024*1024],SizeExceededAction.ThrowException);
                     m_pReadLineOP.Completed += delegate(object s,EventArgs<ReadLineAsyncOP> e){
                         ReadLineCompleted(m_pReadLineOP);
                     };

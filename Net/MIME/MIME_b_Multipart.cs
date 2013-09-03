@@ -68,7 +68,7 @@ namespace LumiSoft.Net.MIME
                 /// </summary>
                 public _DataLine()
                 {
-                    m_pLineBuffer = new byte[32000];
+                    m_pLineBuffer = new byte[4*1024*1024];
                 }
 
 
@@ -141,7 +141,7 @@ namespace LumiSoft.Net.MIME
                 m_pStream  = stream;
                 m_Boundary = boundary;
 
-                m_pReadLineOP   = new SmartStream.ReadLineAsyncOP(new byte[32000],SizeExceededAction.ThrowException);
+                m_pReadLineOP = new SmartStream.ReadLineAsyncOP(new byte[4*1024*1024], SizeExceededAction.ThrowException);
                 m_pTextPreamble = new StringBuilder();
                 m_pTextEpilogue = new StringBuilder();
             }
