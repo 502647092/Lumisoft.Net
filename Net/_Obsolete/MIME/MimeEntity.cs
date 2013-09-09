@@ -140,7 +140,7 @@ namespace LumiSoft.Net.Mime
                 // Boundary is specified, read data to specified boundary.
                 if(!string.IsNullOrEmpty(toBoundary)){
                     MemoryStream entityData = new MemoryStream();
-                    SmartStream.ReadLineAsyncOP readLineOP = new SmartStream.ReadLineAsyncOP(new byte[32000],SizeExceededAction.JunkAndThrowException);
+                    SmartStream.ReadLineAsyncOP readLineOP = new SmartStream.ReadLineAsyncOP(new byte[4*1024*1024], SizeExceededAction.JunkAndThrowException);
 
                     // Read entity data while get boundary end tag --boundaryID-- or EOS.
                     while(true){                        
